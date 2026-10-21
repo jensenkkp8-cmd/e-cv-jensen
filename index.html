@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E-CV dan portofolio pribadi">
+  <title>E-CV | Portofolio Pribadi</title>
+
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #131d31;
+      --text: #edf2ff;
+      --muted: #a6b3ca;
+      --accent: #6ee7b7;
+      --line: #29364d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1080px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 17, 32, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 90px 0 75px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.12;
+      margin: 16px 0;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .intro, .muted {
+      color: var(--muted);
+    }
+
+    .intro {
+      max-width: 570px;
+      font-size: 1.05rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 18px;
+      border: 1px solid var(--accent);
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .btn.primary {
+      color: #082018;
+      background: var(--accent);
+    }
+
+    .profile-card, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 26px;
+    }
+
+    .profile-card {
+      text-align: center;
+    }
+
+    .avatar {
+      width: 125px;
+      height: 125px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #213b4b;
+      color: var(--accent);
+      font-size: 3rem;
+      font-weight: 800;
+      border: 3px solid var(--accent);
+    }
+
+    .profile-card p {
+      color: var(--muted);
+    }
+
+    section {
+      padding: 55px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin-bottom: 26px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      border: 1px solid #38536a;
+      background: #19283b;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--accent);
+      padding: 0 0 24px 20px;
+      margin-left: 7px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .date {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+        gap: 28px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">E-CV.</a>
+      <div class="nav-links">
+        <a href="#tentang">Tentang</a>
+        <a href="#keahlian">Keahlian</a>
+        <a href="#pengalaman">Pengalaman</a>
+        <a href="#pendidikan">Pendidikan</a>
+        <a href="#proyek">Proyek</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container hero" id="home">
+      <div>
+        <p class="eyebrow">Halo, selamat datang!</p>
+        <h1>Saya <span>Nama Kamu</span></h1>
+        <p class="intro">
+          Saya seorang pelajar yang tertarik pada teknologi,
+          pengembangan website, dan desain digital. Ini adalah
+          E-CV pribadi saya untuk menampilkan kemampuan dan karya.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="#proyek">Lihat Proyek</a>
+          <a class="btn" href="#kontak">Hubungi Saya</a>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="avatar">NK</div>
+        <h2>Nama Kamu</h2>
+        <p>Pelajar / Calon Web Developer</p>
+        <p class="muted">Indonesia</p>
+      </div>
+    </div>
+
+    <section id="tentang">
+      <div class="container">
+        <h2 class="section-title">Tentang Saya</h2>
+        <p class="section-desc">Perkenalan singkat mengenai diri saya.</p>
+        <div class="card">
+          Saya adalah pribadi yang memiliki semangat belajar,
+          mampu bekerja sama, dan tertarik mengembangkan keterampilan
+          di bidang teknologi. Saya terus berusaha meningkatkan
+          kemampuan melalui latihan, pembelajaran, dan proyek pribadi.
+        </div>
+      </div>
+    </section>
+
+    <section id="keahlian">
+      <div class="container">
+        <h2 class="section-title">Keahlian</h2>
+        <p class="section-desc">Kemampuan yang sedang saya kembangkan.</p>
+        <div class="card">
+          <div class="tag-list">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript Dasar</span>
+            <span class="tag">Microsoft Word</span>
+            <span class="tag">Microsoft Excel</span>
+            <span class="tag">Komunikasi</span>
+            <span class="tag">Kerja Sama Tim</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pengalaman">
+      <div class="container">
+        <h2 class="section-title">Pengalaman</h2>
+        <p class="section-desc">Pengalaman organisasi, pekerjaan, atau kegiatan.</p>
+        <div class="card">
+          <div class="timeline-item">
+            <p class="date">2026 — Sekarang</p>
+            <h3>Belajar Pengembangan Website</h3>
+            <p class="muted">
+              Mempelajari pembuatan website menggunakan HTML dan CSS
+              serta mencoba mempublikasikannya melalui layanan hosting.
+            </p>
+          </div>
+          <div class="timeline-item">
+            <p class="date">Tambahkan periode</p>
+            <h3>Nama Kegiatan atau Organisasi</h3>
+            <p class="muted">
+              Tuliskan tanggung jawab, kegiatan, atau pencapaian kamu di sini.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pendidikan">
+      <div class="container">
+        <h2 class="section-title">Pendidikan</h2>
+        <p class="section-desc">Riwayat pendidikan saya.</p>
+        <div class="card">
+          <p class="date">Tahun masuk — Sekarang</p>
+          <h3>Nama Sekolah atau Universitas</h3>
+          <p class="muted">Jurusan / Program Studi</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyek">
+      <div class="container">
+        <h2 class="section-title">Proyek Pilihan</h2>
+        <p class="section-desc">Karya yang pernah dibuat atau sedang dipelajari.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>Website E-CV</h3>
+            <p class="muted">
+              Website profil pribadi yang dibuat menggunakan HTML dan CSS
+              serta dipersiapkan untuk deployment melalui Vercel.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Proyek Berikutnya</h3>
+            <p class="muted">
+              Tambahkan nama proyek, tujuan, teknologi yang digunakan,
+              dan hasil yang berhasil dicapai.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <div class="container">
+        <h2 class="section-title">Hubungi Saya</h2>
+        <p class="section-desc">
+          Silakan hubungi saya melalui kontak yang tersedia.
+        </p>
+        <div class="card">
+          <p>Email: emailkamu@example.com</p>
+          <p>Lokasi: Indonesia</p>
+          <div class="contact-links">
+            <a class="btn primary"
+               href="mailto:emailkamu@example.com">Kirim Email</a>
+            <a class="btn"
+               href="https://www.linkedin.com/"
+               target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn"
+               href="https://github.com/"
+               target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Nama Kamu · E-CV Pribadi</p>
+      <p>Dibuat dengan HTML dan CSS.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
