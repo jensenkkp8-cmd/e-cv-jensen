@@ -1,20 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="E-CV dan portofolio pribadi">
-  <title>E-CV | Portofolio Pribadi</title>
+  <meta name="description" content="Portofolio Bayu Aji Wardana - Programmer dan Public Speaker">
+  <title>Bayu Aji Wardana | E-CV</title>
 
   <style>
     :root {
-      --bg: #0b1120;
-      --panel: #131d31;
-      --text: #edf2ff;
-      --muted: #a6b3ca;
-      --accent: #6ee7b7;
-      --line: #29364d;
+      --orange: #ff7417;
+      --orange-light: #ff9148;
+      --black: #080a0d;
+      --dark: #11151b;
+      --white: #f7f7f5;
+      --gray: #b8bdc5;
+      --light: #f4f4f1;
     }
 
     * {
@@ -25,13 +25,13 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 85px;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--light);
+      color: #15171b;
       line-height: 1.7;
     }
 
@@ -41,21 +41,22 @@
     }
 
     .container {
-      width: min(1080px, 90%);
+      width: min(1180px, 90%);
       margin: auto;
     }
 
-    header {
+    /* NAVBAR */
+    .navbar {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(11, 17, 32, 0.94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(12px);
+      z-index: 100;
+      background: rgba(8, 10, 13, 0.96);
+      border-bottom: 1px solid #292d33;
+      color: white;
     }
 
-    nav {
-      min-height: 70px;
+    .nav-inner {
+      min-height: 72px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -63,365 +64,977 @@
     }
 
     .logo {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--accent);
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: var(--orange);
     }
 
     .nav-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      font-size: 0.9rem;
-      color: var(--muted);
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
     }
 
     .nav-links a:hover {
-      color: var(--accent);
+      color: var(--orange);
     }
 
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid #444;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* BUTTON */
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.25s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn-orange {
+      background: var(--orange);
+      color: #111;
+    }
+
+    .btn-orange:hover {
+      background: var(--orange-light);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      color: white;
+      border-color: white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: black;
+    }
+
+    /* HERO */
     .hero {
-      padding: 90px 0 75px;
+      background:
+        radial-gradient(circle at 80% 20%, #332013 0, transparent 35%),
+        var(--black);
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      min-height: 600px;
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      align-items: center;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 50px;
+      align-items: center;
+      padding-top: 65px;
+      padding-bottom: 65px;
     }
 
     .eyebrow {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 2px;
+      color: var(--orange);
       text-transform: uppercase;
-      font-size: 0.8rem;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
     }
 
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.12;
-      margin: 16px 0;
+    .hero h1 {
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.08;
+      letter-spacing: -3px;
+      margin-bottom: 15px;
     }
 
-    h1 span {
-      color: var(--accent);
+    .hero h1 span {
+      color: var(--orange);
     }
 
-    .intro, .muted {
-      color: var(--muted);
+    .hero h2 {
+      font-size: 20px;
+      margin-bottom: 18px;
     }
 
-    .intro {
-      max-width: 570px;
-      font-size: 1.05rem;
+    .hero p.description {
+      color: var(--gray);
+      max-width: 580px;
+      margin-bottom: 27px;
     }
 
-    .actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 28px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 11px 18px;
-      border: 1px solid var(--accent);
-      border-radius: 9px;
-      font-weight: 700;
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 25px;
     }
 
-    .btn.primary {
-      color: #082018;
-      background: var(--accent);
+    .social-links a {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #45484d;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
     }
 
-    .profile-card, .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 26px;
+    .social-links a:hover {
+      background: var(--orange);
+      color: black;
+    }
+
+    /* FOTO PROFIL */
+    .profile-wrap {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 380px;
+    }
+
+    .profile-decoration {
+      position: absolute;
+      width: 75%;
+      height: 75%;
+      background: var(--orange);
+      transform: rotate(-8deg);
+      border-radius: 24px;
     }
 
     .profile-card {
-      text-align: center;
+      position: relative;
+      width: min(320px, 85%);
+      height: 370px;
+      overflow: hidden;
+      border: 5px solid var(--white);
+      border-radius: 18px;
+      background: #20252c;
+      box-shadow: 0 20px 60px #0007;
     }
 
-    .avatar {
-      width: 125px;
-      height: 125px;
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-fallback {
+      width: 100%;
+      height: 100%;
       display: grid;
       place-items: center;
-      margin: 0 auto 18px;
-      border-radius: 50%;
-      background: #213b4b;
-      color: var(--accent);
-      font-size: 3rem;
-      font-weight: 800;
-      border: 3px solid var(--accent);
+      color: var(--orange);
+      font-size: 55px;
+      font-weight: 900;
     }
 
-    .profile-card p {
-      color: var(--muted);
+    /* SECTION */
+    .section {
+      padding: 85px 0;
     }
 
-    section {
-      padding: 55px 0;
+    .section-heading {
+      margin-bottom: 35px;
     }
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 8px;
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+      margin-bottom: 12px;
     }
 
-    .section-desc {
-      color: var(--muted);
-      margin-bottom: 26px;
+    .section-heading h2 span {
+      color: var(--orange);
     }
 
-    .grid {
+    .section-heading p {
+      color: #656a72;
+      max-width: 680px;
+    }
+
+    /* ABOUT */
+    .about-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 35px;
+      align-items: center;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      color: var(--accent);
+    .about-text p {
+      color: #555b63;
+      margin-bottom: 20px;
     }
 
-    .tag-list {
+    .about-facts {
       display: flex;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    .about-facts strong {
+      color: var(--orange);
+    }
+
+    .dark-card {
+      background: var(--dark);
+      color: white;
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .dark-card h3 {
+      margin-bottom: 22px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px 12px;
+    }
+
+    .skill {
+      text-align: center;
+      font-size: 12px;
+      color: #e7e7e7;
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 8px;
+      border: 1px solid #42464d;
+      border-radius: 12px;
+      color: var(--orange);
+      font-weight: 900;
+      background: #20252c;
+    }
+
+    /* PROJECTS */
+    .projects {
+      background: white;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      border: 1px solid #e3e3e3;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: 0.25s;
+      background: white;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px #00000012;
+    }
+
+    .project-banner {
+      height: 175px;
+      background: linear-gradient(135deg, #10141a, #292e35);
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      border-bottom: 4px solid var(--orange);
+    }
+
+    .project-content {
+      padding: 22px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      font-size: 14px;
+      color: #62666d;
+      margin-bottom: 17px;
+    }
+
+    .tags {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
     .tag {
-      border: 1px solid #38536a;
-      background: #19283b;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.9rem;
+      background: #fff0e6;
+      color: #a34508;
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .project-link {
+      color: #b94d08;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* PUBLIC SPEAKING */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 45px;
+    }
+
+    .experience-intro {
+      background: var(--black);
+      color: white;
+      padding: 30px;
+      border-radius: 16px;
+    }
+
+    .experience-intro p {
+      color: var(--gray);
+      margin: 18px 0 25px;
+    }
+
+    .timeline {
+      border-left: 2px solid #ffd0b0;
+      padding-left: 28px;
+      margin-left: 8px;
     }
 
     .timeline-item {
-      border-left: 2px solid var(--accent);
-      padding: 0 0 24px 20px;
-      margin-left: 7px;
+      position: relative;
+      margin-bottom: 30px;
     }
 
-    .timeline-item:last-child {
-      padding-bottom: 0;
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -36px;
+      top: 7px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 5px #fff0e6;
     }
 
-    .date {
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 700;
+    .timeline-item h3 {
+      margin-bottom: 5px;
     }
 
-    .contact-links {
+    .timeline-item p {
+      color: #62666d;
+      font-size: 14px;
+    }
+
+    .experience-label {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #b94d08;
+      font-weight: bold;
+    }
+
+    /* KOMPETENSI */
+    .competencies {
+      background: var(--black);
+      color: white;
+    }
+
+    .competencies-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .competencies p {
+      color: var(--gray);
+      margin: 15px 0 20px;
+    }
+
+    .pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
+      gap: 10px;
     }
 
+    .pill {
+      background: #1b2027;
+      border: 1px solid #3c4149;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 13px;
+    }
+
+    /* EDUCATION */
+    .education-card {
+      border: 1px solid #dedede;
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      border-left: 5px solid var(--orange);
+    }
+
+    .education-card p {
+      color: #62666d;
+    }
+
+    .education-card .period {
+      color: #b94d08;
+      font-size: 13px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--black);
+      color: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .contact-description {
+      color: var(--gray);
+      margin: 18px 0;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 13px;
+      margin-top: 25px;
+    }
+
+    .contact-info a:hover {
+      color: var(--orange);
+    }
+
+    .contact-box {
+      background: #12161c;
+      border: 1px solid #353a42;
+      border-radius: 15px;
+      padding: 28px;
+    }
+
+    .contact-box p {
+      color: var(--gray);
+      margin: 12px 0;
+    }
+
+    .contact-box .btn {
+      margin-top: 10px;
+    }
+
+    /* FOOTER */
     footer {
-      border-top: 1px solid var(--line);
-      padding: 25px 0;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
+      background: #050608;
+      color: #a8adb5;
+      padding: 22px 0;
+      font-size: 13px;
     }
 
-    @media (max-width: 700px) {
-      nav {
-        padding: 14px 0;
-        align-items: flex-start;
-        flex-direction: column;
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .back-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--orange);
+      color: black;
+      border-radius: 9px;
+      font-weight: bold;
+      z-index: 50;
+    }
+
+    /* RESPONSIVE HP */
+    @media (max-width: 850px) {
+      .nav-links {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .hero-grid {
+        gap: 25px;
+      }
+
+      .about-grid,
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-inner {
+        min-height: 65px;
       }
 
       .nav-links {
-        gap: 12px;
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background: var(--black);
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 14px;
       }
 
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 55px;
-        gap: 28px;
+      .nav-links.open {
+        display: flex;
       }
 
-      .grid {
+      .hero-grid {
         grid-template-columns: 1fr;
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: 47px;
+      }
+
+      .profile-wrap {
+        min-height: 330px;
+      }
+
+      .profile-card {
+        height: 320px;
+        width: 260px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .project-grid,
+      .competencies-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <nav class="container">
-      <a class="logo" href="#home">WELCOME TO MY E-CV</a>
-      <div class="nav-links">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#beranda" class="logo">B<span>AW.</span></a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+        ☰
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#beranda">Beranda</a>
         <a href="#tentang">Tentang</a>
-        <a href="#keahlian">Keahlian</a>
-        <a href="#pengalaman">Pengalaman</a>
-        <a href="#pendidikan">Pendidikan</a>
         <a href="#proyek">Proyek</a>
+        <a href="#pengalaman">Pengalaman</a>
+        <a href="#keahlian">Keahlian</a>
+        <a href="#pendidikan">Pendidikan</a>
         <a href="#kontak">Kontak</a>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <div class="container hero" id="home">
+  <!-- BERANDA -->
+  <section class="hero" id="beranda">
+    <div class="container hero-grid">
       <div>
         <p class="eyebrow">Halo, selamat datang!</p>
-        <h1>Saya <span>Nama Kamu</span></h1>
-        <p class="intro">
-          Saya seorang pelajar yang tertarik pada teknologi,
-          pengembangan website, dan desain digital. Ini adalah
-          E-CV pribadi saya untuk menampilkan kemampuan dan karya.
+
+        <h1>Bayu Aji <span>Wardana</span></h1>
+
+        <h2>Programmer &amp; Public Speaker</h2>
+
+        <p class="description">
+          Saya mahasiswa S1 Teknik Mesin yang tertarik pada pengembangan
+          website, aplikasi, dan teknologi digital. Saya juga aktif dalam
+          public speaking sebagai MC, narasumber, dan podcaster.
         </p>
-        <div class="actions">
-          <a class="btn primary" href="#proyek">Lihat Proyek</a>
-          <a class="btn" href="#kontak">Hubungi Saya</a>
+
+        <div class="hero-buttons">
+          <a href="#proyek" class="btn btn-orange">Lihat Proyek ↗</a>
+          <a href="#kontak" class="btn btn-outline">Hubungi Saya</a>
+        </div>
+
+        <div class="social-links">
+          <a href="https://github.com/" target="_blank" rel="noreferrer"
+             title="Ganti dengan profil GitHub kamu">GH</a>
+          <a href="https://linkedin.com/" target="_blank" rel="noreferrer"
+             title="Ganti dengan profil LinkedIn kamu">in</a>
+          <a href="https://instagram.com/" target="_blank" rel="noreferrer"
+             title="Ganti dengan profil Instagram kamu">IG</a>
+          <a href="mailto:wardanaaji767@gmail.com" title="Email">✉</a>
         </div>
       </div>
 
-      <div class="profile-card">
-        <div class="avatar">NK</div>
-        <h2>Nama Kamu</h2>
-        <p>Pelajar / Calon Web Developer</p>
-        <p class="muted">Indonesia</p>
+      <div class="profile-wrap">
+        <div class="profile-decoration"></div>
+
+        <div class="profile-card">
+          <!-- Upload foto ke GitHub dengan nama foto-saya.jpg -->
+          <img
+            src="foto-saya.jpg"
+            alt="Foto Bayu Aji Wardana"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          >
+
+          <div class="profile-fallback" style="display:none;">BAW</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <section id="tentang">
-      <div class="container">
-        <h2 class="section-title">Tentang Saya</h2>
-        <p class="section-desc">Perkenalan singkat mengenai diri saya.</p>
-        <div class="card">
-          Saya adalah pribadi yang memiliki semangat belajar,
-          mampu bekerja sama, dan tertarik mengembangkan keterampilan
-          di bidang teknologi. Saya terus berusaha meningkatkan
-          kemampuan melalui latihan, pembelajaran, dan proyek pribadi.
+  <!-- TENTANG -->
+  <section class="section" id="tentang">
+    <div class="container about-grid">
+      <div class="about-text">
+        <div class="section-heading">
+          <p class="eyebrow">Kenali saya</p>
+          <h2>Tentang <span>Saya</span></h2>
         </div>
-      </div>
-    </section>
 
-    <section id="keahlian">
-      <div class="container">
-        <h2 class="section-title">Keahlian</h2>
-        <p class="section-desc">Kemampuan yang sedang saya kembangkan.</p>
-        <div class="card">
-          <div class="tag-list">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript Dasar</span>
-            <span class="tag">Microsoft Word</span>
-            <span class="tag">Microsoft Excel</span>
-            <span class="tag">Komunikasi</span>
-            <span class="tag">Kerja Sama Tim</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pengalaman">
-      <div class="container">
-        <h2 class="section-title">Pengalaman</h2>
-        <p class="section-desc">Pengalaman organisasi, pekerjaan, atau kegiatan.</p>
-        <div class="card">
-          <div class="timeline-item">
-            <p class="date">2026 — Sekarang</p>
-            <h3>Belajar Pengembangan Website</h3>
-            <p class="muted">
-              Mempelajari pembuatan website menggunakan HTML dan CSS
-              serta mencoba mempublikasikannya melalui layanan hosting.
-            </p>
-          </div>
-          <div class="timeline-item">
-            <p class="date">Tambahkan periode</p>
-            <h3>Nama Kegiatan atau Organisasi</h3>
-            <p class="muted">
-              Tuliskan tanggung jawab, kegiatan, atau pencapaian kamu di sini.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pendidikan">
-      <div class="container">
-        <h2 class="section-title">Pendidikan</h2>
-        <p class="section-desc">Riwayat pendidikan saya.</p>
-        <div class="card">
-          <p class="date">Tahun masuk — Sekarang</p>
-          <h3>Nama Sekolah atau Universitas</h3>
-          <p class="muted">Jurusan / Program Studi</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="proyek">
-      <div class="container">
-        <h2 class="section-title">Proyek Pilihan</h2>
-        <p class="section-desc">Karya yang pernah dibuat atau sedang dipelajari.</p>
-        <div class="grid">
-          <article class="card">
-            <h3>Website E-CV</h3>
-            <p class="muted">
-              Website profil pribadi yang dibuat menggunakan HTML dan CSS
-              serta dipersiapkan untuk deployment melalui Vercel.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Proyek Berikutnya</h3>
-            <p class="muted">
-              Tambahkan nama proyek, tujuan, teknologi yang digunakan,
-              dan hasil yang berhasil dicapai.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="kontak">
-      <div class="container">
-        <h2 class="section-title">Hubungi Saya</h2>
-        <p class="section-desc">
-          Silakan hubungi saya melalui kontak yang tersedia.
+        <p>
+          Saya adalah mahasiswa S1 Teknik Mesin yang memiliki ketertarikan
+          pada pengembangan website, aplikasi, dan teknologi digital.
+          Selain bidang teknologi, saya juga memiliki minat dalam komunikasi
+          dan public speaking.
         </p>
-        <div class="card">
-          <p>Email: emailkamu@example.com</p>
-          <p>Lokasi: Indonesia</p>
-          <div class="contact-links">
-            <a class="btn primary"
-               href="mailto:emailkamu@example.com">Kirim Email</a>
-            <a class="btn"
-               href="https://www.linkedin.com/"
-               target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="btn"
-               href="https://github.com/"
-               target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
+
+        <p>
+          Melalui proyek dan pengalaman berbicara di depan publik, saya terus
+          mengembangkan kemampuan teknis, kreativitas, kerja sama tim,
+          dan kepercayaan diri.
+        </p>
+
+        <div class="about-facts">
+          <div><strong>Lokasi</strong><br>Klaten, Jawa Tengah</div>
+          <div><strong>Bidang</strong><br>Programming &amp; Speaking</div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer>
+      <div class="dark-card" id="keahlian">
+        <p class="eyebrow">Kemampuan</p>
+        <h3>Skills &amp; Tools</h3>
+
+        <div class="skills-grid">
+          <div class="skill"><div class="skill-icon">HTML</div>HTML</div>
+          <div class="skill"><div class="skill-icon">CSS</div>CSS</div>
+          <div class="skill"><div class="skill-icon">JS</div>JavaScript</div>
+          <div class="skill"><div class="skill-icon">WEB</div>Web Dev</div>
+          <div class="skill"><div class="skill-icon">APP</div>Aplikasi</div>
+          <div class="skill"><div class="skill-icon">GH</div>GitHub</div>
+          <div class="skill"><div class="skill-icon">UI</div>UI Design</div>
+          <div class="skill"><div class="skill-icon">MC</div>Speaking</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYEK -->
+  <section class="section projects" id="proyek">
     <div class="container">
-      <p>© <span id="year"></span> Nama Kamu · E-CV Pribadi</p>
-      <p>Dibuat dengan HTML dan CSS.</p>
+      <div class="section-heading">
+        <p class="eyebrow">Karya pilihan</p>
+        <h2>Proyek <span>Digital</span></h2>
+        <p>
+          Berikut beberapa proyek yang pernah saya kerjakan dalam bidang
+          pengembangan website dan aplikasi.
+        </p>
+      </div>
+
+      <div class="project-grid">
+
+        <article class="project-card">
+          <div class="project-banner">POSYANDU WEB</div>
+          <div class="project-content">
+            <h3>Website Posyandu</h3>
+            <p>
+              Website untuk mendukung penyampaian informasi dan pengelolaan
+              data kegiatan Posyandu. Sesuaikan keterangan dengan fitur yang
+              benar-benar tersedia pada proyekmu.
+            </p>
+            <div class="tags">
+              <span class="tag">Website</span>
+              <span class="tag">Informasi</span>
+              <span class="tag">Data</span>
+            </div>
+            <a class="project-link" href="#kontak">Tanyakan proyek ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-banner">DAHARGO</div>
+          <div class="project-content">
+            <h3>Website Dahargo</h3>
+            <p>
+              Proyek pengembangan website Dahargo sebagai bagian dari
+              portofolio digital. Tambahkan fungsi dan teknologi yang
+              digunakan sesuai proyek aslinya.
+            </p>
+            <div class="tags">
+              <span class="tag">Web Development</span>
+              <span class="tag">Website</span>
+            </div>
+            <a class="project-link" href="#kontak">Tanyakan proyek ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-banner">SALON POS</div>
+          <div class="project-content">
+            <h3>Aplikasi Kasir Salon</h3>
+            <p>
+              Aplikasi kasir yang dibuat untuk membantu pencatatan transaksi
+              salon. Tambahkan fitur transaksi, layanan, atau laporan jika
+              memang tersedia di aplikasimu.
+            </p>
+            <div class="tags">
+              <span class="tag">Aplikasi</span>
+              <span class="tag">Kasir</span>
+              <span class="tag">Transaksi</span>
+            </div>
+            <a class="project-link" href="#kontak">Tanyakan proyek ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PENGALAMAN PUBLIC SPEAKING -->
+  <section class="section" id="pengalaman">
+    <div class="container experience-grid">
+
+      <div class="experience-intro">
+        <p class="eyebrow">Pengalaman</p>
+        <h2>Public <span style="color:var(--orange)">Speaking</span></h2>
+        <p>
+          Saya senang berbagi ide, membangun komunikasi, dan menyampaikan
+          informasi kepada audiens melalui berbagai kegiatan.
+        </p>
+        <a href="#kontak" class="btn btn-orange">Ajak Kolaborasi ↗</a>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <h3>Master of Ceremony (MC)</h3>
+          <p>
+            Memandu acara, menyampaikan informasi kepada audiens, dan membantu
+            menjaga alur kegiatan agar berjalan dengan baik.
+          </p>
+          <span class="experience-label">Pembawa acara</span>
+        </article>
+
+        <article class="timeline-item">
+          <h3>Narasumber HIMSI</h3>
+          <p>
+            Berbagi pengetahuan dan pengalaman sebagai narasumber dalam
+            kegiatan HIMSI.
+          </p>
+          <span class="experience-label">Berbagi pengetahuan</span>
+        </article>
+
+        <article class="timeline-item">
+          <h3>Podcast</h3>
+          <p>
+            Berpartisipasi dalam podcast dan diskusi untuk menyampaikan ide
+            serta bertukar perspektif.
+          </p>
+          <span class="experience-label">Diskusi dan komunikasi</span>
+        </article>
+
+        <article class="timeline-item">
+          <h3>Pengalaman Lainnya</h3>
+          <p>
+            Berbagai kegiatan public speaking lainnya yang dapat dilengkapi
+            dengan nama acara, penyelenggara, dan dokumentasi.
+          </p>
+          <span class="experience-label">Public speaking</span>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KEAHLIAN -->
+  <section class="section competencies">
+    <div class="container competencies-grid">
+      <div>
+        <p class="eyebrow">Technical skills</p>
+        <h2>Keahlian <span style="color:var(--orange)">Teknis</span></h2>
+        <p>
+          Kemampuan teknis yang dapat disesuaikan dengan teknologi yang
+          benar-benar kamu kuasai.
+        </p>
+        <div class="pills">
+          <span class="pill">Pengembangan Website</span>
+          <span class="pill">Pengembangan Aplikasi</span>
+          <span class="pill">Git &amp; GitHub</span>
+          <span class="pill">Problem Solving</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Soft skills</p>
+        <h2>Komunikasi <span style="color:var(--orange)">Profesional</span></h2>
+        <p>
+          Kemampuan yang mendukung presentasi, kerja sama, dan penyampaian
+          gagasan dalam kegiatan maupun proyek.
+        </p>
+        <div class="pills">
+          <span class="pill">Public Speaking</span>
+          <span class="pill">Master of Ceremony</span>
+          <span class="pill">Presentasi</span>
+          <span class="pill">Komunikasi</span>
+          <span class="pill">Kolaborasi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENDIDIKAN -->
+  <section class="section" id="pendidikan">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">Latar belakang</p>
+        <h2>Riwayat <span>Pendidikan</span></h2>
+      </div>
+
+      <div class="education-card">
+        <h3>S1 Teknik Mesin</h3>
+        <p>Sekolah Tinggi Teknologi Warga Surakarta</p>
+        <p class="period">Mahasiswa — Semester 5 (perbarui jika diperlukan)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section class="section contact" id="kontak">
+    <div class="container contact-grid">
+      <div>
+        <p class="eyebrow">Mari terhubung</p>
+        <h2>Hubungi <span style="color:var(--orange)">Saya</span></h2>
+
+        <p class="contact-description">
+          Terbuka untuk kolaborasi proyek digital, undangan MC, kegiatan
+          narasumber, dan kesempatan pengembangan diri.
+        </p>
+
+        <div class="contact-info">
+          <div>✉ &nbsp; <a href="mailto:wardanaaji767@gmail.com">wardanaaji767@gmail.com</a></div>
+          <div>☎ &nbsp; <a href="tel:+6288200513665">0882005136655</a></div>
+          <div>⌖ &nbsp; Klaten, Jawa Tengah</div>
+        </div>
+      </div>
+
+      <div class="contact-box">
+        <p class="eyebrow">Punya ide atau acara?</p>
+        <h3>Mari bekerja sama.</h3>
+        <p>
+          Hubungi saya melalui email untuk membahas proyek, kolaborasi,
+          atau kesempatan menjadi MC dan narasumber.
+        </p>
+        <a class="btn btn-orange"
+           href="mailto:wardanaaji767@gmail.com?subject=Kolaborasi%20E-CV">
+          Kirim Email ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong style="color:white">B<span style="color:var(--orange)">AW.</span></strong>
+        &nbsp; © <span id="year"></span> Bayu Aji Wardana
+      </div>
+      <div>Programmer · Public Speaker · Lifelong Learner</div>
     </div>
   </footer>
 
+  <a href="#beranda" class="back-top" aria-label="Kembali ke atas">↑</a>
+
   <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("open");
+
+      menuToggle.textContent =
+        navLinks.classList.contains("open") ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuToggle.textContent = "☰";
+      });
+    });
+
     document.getElementById("year").textContent =
       new Date().getFullYear();
   </script>
+
 </body>
 </html>
